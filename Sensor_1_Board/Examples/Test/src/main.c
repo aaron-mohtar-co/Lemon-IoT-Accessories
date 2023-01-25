@@ -11,6 +11,7 @@
  * API Reference:
  * https://docs.zephyrproject.org/latest/hardware/peripherals/sensor.html
  * https://docs.zephyrproject.org/3.0.0/reference/devicetree/bindings/sensor/sensirion%2Cshtcx.html
+ * https://docs.zephyrproject.org/3.0.0/reference/devicetree/bindings/sensor/bosch%2Cbme680-i2c.html#dtbinding-bosch-bme680-i2c
  * 
  */
 
@@ -26,27 +27,56 @@ void main(void)
 
  	// Get a device structure from a devicetree node with compatible
  	// "sensirion,shtcx". 
-	const struct device *dev = DEVICE_DT_GET_ANY(sensirion_shtcx);
+	const struct device *dev_shtc = DEVICE_DT_GET_ANY(sensirion_shtcx);
 
-	if (dev == NULL) {
+	if (dev_shtc == NULL) {
 		printk("\nError: No devicetree node found for Sensirion SHTCx.\n");
 		return;
 	}
 
-	if (!device_is_ready(dev)) {
-		printf("Device %s is not ready\n", dev->name);
+	if (!device_is_ready(dev_shtc)) {
+		printf("Device %s is not ready\n", dev_shtc->name);
 		return;
 	}
 
-	printk("Found device %s. Reading sensor data\n", dev->name);
+	printk("Found device %s. Reading sensor data\n", dev_shtc->name);
+
+	// Get a device structure from a devicetree node with compatible
+ 	// "bosch,bme680". 
+	const struct device *dev_bme = DEVICE_DT_GET_ANY(bosch_bme680);
+
+	if (dev_bme == NULL) {
+		printk("\nError: No devicetree node found for Boasch BME680.\n");
+		return;
+	}
+
+	if (!device_is_ready(dev_bme)) {
+		printf("Device %s is not ready\n", dev_bme->name);
+		return;
+	}
+
+	printk("Found device %s. Reading sensor data\n", dev_bme->name);
 
 	while (true) {
-		struct sensor_value temp, hum;
+		struct sensor_value temp, hum, pres, gas;
 
-		sensor_sample_fetch(dev);
-		sensor_channel_get(dev, SENSOR_CHAN_AMBIENT_TEMP, &temp);
-		sensor_channel_get(dev, SENSOR_CHAN_HUMIDITY, &hum);
-		printk("%.2f degC, %0.2f%% RH\n", sensor_value_to_double(&temp), sensor_value_to_double(&hum));
+		// Read Sensirion SHTC3
+		sensor_sample_fetch(dev_shtc);
+		sensor_channel_get(dev_shtc, SENSOR_CHAN_AMBIENT_TEMP, &temp);
+		sensor_channel_get(dev_shtc, SENSOR_CHAN_HUMIDITY, &hum);
+		printk("SHTC3:  %.2f degC, %0.2f%% RH\n", sensor_value_to_double(&temp), sensor_value_to_double(&hum));
+
+		// Read Bosch BME680
+		sensor_sample_fetch(dev_bme);
+		sensor_channel_get(dev_bme, SENSOR_CHAN_AMBIENT_TEMP, &temp);
+		sensor_channel_get(dev_bme, SENSOR_CHAN_HUMIDITY, &hum);
+		sensor_channel_get(dev_bme, SENSOR_CHAN_PRESS, &pres);
+		sensor_channel_get(dev_bme, SENSOR_CHAN_GAS_RES, &gas);
+		printk("BME680: %.2f degC, %0.2f%% RH, %0.2f kPa, %0.0f ohms\n", 
+			sensor_value_to_double(&temp), 
+			sensor_value_to_double(&hum),
+			sensor_value_to_double(&pres),
+			sensor_value_to_double(&gas));
 
 		k_sleep(K_MSEC(1000));
 	}
