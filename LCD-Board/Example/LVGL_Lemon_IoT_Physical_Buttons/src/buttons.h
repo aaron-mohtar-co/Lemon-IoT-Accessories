@@ -16,7 +16,8 @@ typedef enum buttonPressType_t {
  */
 typedef enum buttonId_t {
     BUTTON_1,
-    BUTTON_2
+    BUTTON_2,
+    BUTTON_3
 } buttonId_t;
 
 typedef void(*buttonHandlerCallback_t)(buttonPressType_t type, buttonId_t id);

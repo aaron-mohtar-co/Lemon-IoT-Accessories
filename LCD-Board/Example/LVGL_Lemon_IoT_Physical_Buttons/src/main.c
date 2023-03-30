@@ -39,13 +39,17 @@ static const struct pwm_dt_spec pwm_lcd_backlight = PWM_DT_SPEC_GET(DT_ALIAS(pwm
 static void enocoder_read(struct _lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
 {
     if (button_read(BUTTON_1)) {
-        data->key = LV_KEY_RIGHT;
+        data->key = LV_KEY_LEFT;
         data->state = LV_INDEV_STATE_PR;
         last_pressed = BUTTON_1;
     } else if (button_read(BUTTON_2)) {
         data->key = LV_KEY_ENTER;
         data->state = LV_INDEV_STATE_PR;
         last_pressed = BUTTON_2;
+    } else if (button_read(BUTTON_3)) {
+        data->key = LV_KEY_RIGHT;
+        data->state = LV_INDEV_STATE_PR;
+        last_pressed = BUTTON_3;
     } else {
         if (last_pressed == 0xFF) {
             return;
@@ -53,10 +57,13 @@ static void enocoder_read(struct _lv_indev_drv_t *indev_drv, lv_indev_data_t *da
         data->state = LV_INDEV_STATE_REL;
         switch (last_pressed) {
             case BUTTON_1:
-                data->key = LV_KEY_RIGHT;
+                data->key = LV_KEY_LEFT;
                 break;
             case BUTTON_2:
                 data->key = LV_KEY_ENTER;
+                break; 
+            case BUTTON_3:
+                data->key = LV_KEY_RIGHT;
                 break;            
         }
         last_pressed = 0xFF;
