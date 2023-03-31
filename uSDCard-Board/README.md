@@ -17,5 +17,5 @@ It is not compatible with the following boards:
 ## Examples
 
 The following examples are available:
-* [uSDCard](https://github.com/aaron-mohtar-co/Lemon-IoT-Accessories/tree/main/uSDCard-Board/Example/uSDCard) - Provides basic source-code for mounting a filesystem, writing and reading to a file. 
-* [Datalogger](https://github.com/aaron-mohtar-co/Lemon-IoT-Accessories/tree/main/uSDCard-Board/Example/DataLogger) - Provides a framework to periodically log data to MicroSD Card. Example file is comma-delimited, but can also be single line log messages.
+* [uSDCard](https://github.com/aaron-mohtar-co/Lemon-IoT-Accessories/tree/main/uSDCard-Board/Examples/uSDCard) - Provides basic source-code for mounting a filesystem, writing and reading to a file. 
+* [Datalogger](https://github.com/aaron-mohtar-co/Lemon-IoT-Accessories/tree/main/uSDCard-Board/Examples/DataLogger) - Provides a framework to periodically log data to MicroSD Card. Example file is comma-delimited, but can also be single line log messages.
