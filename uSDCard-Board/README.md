@@ -12,5 +12,10 @@ The Micro SD Card Companion is compatible with the following boards:
 
 It is not compatible with the following boards:
   
-* [Lemon-IoT-BLE-nRF52832](https://github.com/aaron-mohtar-co/Lemon-IoT-BLE-nRF52832) The nRF52832 reset pin (P0.21) shares the same I/O line as MOSI. While the reset line can be reassigned, the hardware has a 0.1uF capacitor that effects signal integrity.
+* [Lemon-IoT-BLE-nRF52832](https://github.com/aaron-mohtar-co/Lemon-IoT-BLE-nRF52832) - The nRF52832 reset pin (P0.21) shares the same I/O line as MOSI. While the reset line can be reassigned, the hardware has a 0.1uF capacitor that effects signal integrity.
   
+## Examples
+
+The following examples are available:
+* [uSDCard](https://github.com/aaron-mohtar-co/Lemon-IoT-Accessories/tree/main/uSDCard-Board/Example/uSDCard) - Provides basic source-code for mounting a filesystem, writing and reading to a file. 
+* [Datalogger](https://github.com/aaron-mohtar-co/Lemon-IoT-Accessories/tree/main/uSDCard-Board/Example/DataLogger) - Provides a framework to periodically log data to MicroSD Card. Example file is comma-delimited, but can also be single line log messages.
