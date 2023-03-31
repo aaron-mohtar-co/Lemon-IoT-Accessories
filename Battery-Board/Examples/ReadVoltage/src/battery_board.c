@@ -39,7 +39,7 @@ int batt_brd_init(void)
 		err = gpio_pin_configure_dt(&gpio_vbat_mon_en, GPIO_OUTPUT_INACTIVE);
 		if (err < 0) {
 			// Handle error
-			return;
+			return -1;
 		}
 	} else {
 		return -1;
@@ -50,7 +50,7 @@ int batt_brd_init(void)
 		err = gpio_pin_configure_dt(&gpio_charging, GPIO_INPUT);
 		if (err < 0) {
 			// Handle error
-			return;
+			return -1;
 		}
 	} else {
 		return -1;
@@ -68,15 +68,17 @@ int batt_brd_init(void)
 
 		if (!device_is_ready(adc_channels[i].dev)) {
 			printk("ADC controller device not ready\n");
-			return;
+			return -1;
 		}
 
 		err = adc_channel_setup_dt(&adc_channels[i]);
 		if (err < 0) {
 			printk("Could not setup channel #%d (%d)\n", i, err);
-			return;
+			return -1;
 		}
 	}
+
+	return(0);
 }
 
 int32_t batt_brd_read_batt_volt(void)
