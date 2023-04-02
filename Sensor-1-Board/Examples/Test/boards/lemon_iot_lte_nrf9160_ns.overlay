@@ -1,8 +1,9 @@
-
-// DeviceTree overlay for Lemon IoT LTE nRF9160 Board
-//
-// Copyright (c) 2023 Aaron Mohtar & Co Pty Ltd
-// SPDX-License-Identifier: Apache-2.0
+/*
+ * DeviceTree overlay for Lemon IoT LTE nRF9160 Board
+ *
+ * Copyright (c) 2023 Aaron Mohtar & Co Pty Ltd
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
 &pinctrl {
 
