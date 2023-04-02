@@ -4,8 +4,8 @@ Add an affordable environment sensor to your Lemon IoT based project. This board
 
 The board contains the following sensors:
 
-* [Bosch BME680 Gas Sensor](https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme680/) - Relative humdidity, barometric pressure, ambient temperature and gas (VOC) sensor.
-* [Sensirion SHTC3](https://sensirion.com/products/catalog/SHTC3/) - Relative humdidity and ambient temperature sensor.
+* [Bosch BME680 Gas Sensor](https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme680/) - Relative humidity, barometric pressure, ambient temperature and gas (VOC) sensor.
+* [Sensirion SHTC3](https://sensirion.com/products/catalog/SHTC3/) - Relative humidity and ambient temperature sensor.
 * [Lite-ON LTR-329ALS](https://optoelectronics.liteon.com/en-global/led/index/Detail/926) - Ambient light sensor. 
 
 ## Compatibility
