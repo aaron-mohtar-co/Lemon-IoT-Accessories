@@ -1,6 +1,6 @@
 # WiFi-6 Companion Board
 
-WiFi is ubiquitous. Add WiFi-6 to your project while minimising power consumption with Target Wake Time (TWT). 
+WiFi is ubiquitous. Add WiFi-6 to your project while minimising power consumption with [Target Wake Time (TWT)](https://devzone.nordicsemi.com/nordic/nordic-blog/b/blog/posts/target-wake-time-on-the-nrf7002-dk). 
 
 Based on the [nRF7002 companion IC](https://www.nordicsemi.com/Products/nRF7002) from Nordic Semiconductor.  
 
