@@ -96,7 +96,7 @@ int32_t batt_brd_read_batt_volt(void)
 	(void)adc_sequence_init_dt(&adc_channels[0], &sequence);
 
 	gpio_pin_set_dt(&gpio_vbat_mon_en, 1);
-	k_sleep(K_MSEC(30));
+	k_sleep(K_USEC(10));
 
 	// Request a conversion
 	err = adc_read(adc_channels[0].dev, &sequence);
