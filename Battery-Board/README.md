@@ -25,7 +25,7 @@ In addition to the above, version 1.1 provides support to measure the battery vo
 
 * The solar charger can accept an input voltage up to 18V. 
 * Maximum charging current is set at 390mA, but may be limited by your solar panel. 
-* The charger has input voltage-based dynamic power management (DPM) that can throttle the current back as the voltage drops. This can be used to optimise PV solar power output by setting this close to the PV solar panel's maximum power point (MPP). Currently it is set to 6V to match the [90 x 60mm, 1 Watt solar panel (6V @ 166mA)](https://lemon-iot.com/index.php/product/lemon-iot-accessory-6v-solar-pv-panels/).   
+* The charger has input voltage-based dynamic power management (DPM) that can throttle the current back as the voltage drops. This can be used to optimise PV solar power output by setting this close to the PV solar panel's maximum power point (MPP). Currently it is set to 6V to match the [90 x 60mm, 0.6 Watt solar panel (6V @ 100mA) or the 110 x 60mm, 1 Watt solar panel (6V @ 166mA)](https://lemon-iot.com/index.php/product/lemon-iot-accessory-6v-solar-pv-panels/).   
 
 ## Compatibility
 
