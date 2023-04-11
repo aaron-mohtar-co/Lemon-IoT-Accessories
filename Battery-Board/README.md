@@ -7,6 +7,8 @@ The board consists of:
 * [BQ29702](https://www.ti.com/product/BQ2970) - Li-Ion/Li Polymer Advanced Single-Cell Battery Protector to disconnect the battery if the voltage falls below 2.80V or exceeds 4.35V.
 * [BQ24210](https://www.ti.com/product/BQ24210) - 800mA Single-Cell Li-Ion Solar Battery Charger.
 
+<P ALIGN="CENTER"><IMG SRC="https://lemon-iot.com/wp-content/uploads/2023/01/Lemon-IoT-battery-diagram.jpeg" width=50% height=50%></P>
+
 In addition to the above, version 1.1 provides support to measure the battery voltage and includes a power switch.
 
 ## Notes
