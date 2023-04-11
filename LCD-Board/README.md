@@ -4,6 +4,8 @@ Adding colour graphics to your Lemon IoT projects is easy with Zephyr's support 
 
 Based on a 1.8" 170 x 320 LCD Screen with ST7789 controller.
 
+<P ALIGN="CENTER"><IMG SRC="https://lemon-iot.com/wp-content/uploads/2023/03/Lemon-IoT-lcd-diagram.jpeg" width=50% height=50%></P>
+
 ## Compatibility
 
 The LCD companion board is compatible with the following processor boards:
