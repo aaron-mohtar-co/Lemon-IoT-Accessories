@@ -8,6 +8,8 @@ The board contains the following sensors:
 * [Sensirion SHTC3](https://sensirion.com/products/catalog/SHTC3/) - Relative humidity and ambient temperature sensor.
 * [Lite-ON LTR-329ALS](https://optoelectronics.liteon.com/en-global/led/index/Detail/926) - Ambient light sensor. 
 
+<P ALIGN="CENTER"><IMG SRC="https://lemon-iot.com/wp-content/uploads/2023/01/Lemon-IoT-sensor-1-diagram.jpeg" width=50% height=50%></P>
+
 ## Compatibility
 
 The Micro SD Card Companion is compatible with the following boards:
