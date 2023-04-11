@@ -1,6 +1,6 @@
 # Environmental Sensor Companion Board
 
-Add an affordable environment sensor to your Lemon IoT based project. This board measures ambient temperature, relative humidity and ambient light.
+Add an affordable environmental sensor to your Lemon IoT based project. This board measures ambient temperature, relative humidity and ambient light.
 
 The board contains the following sensors:
 
