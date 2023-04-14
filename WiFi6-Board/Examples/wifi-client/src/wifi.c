@@ -10,6 +10,9 @@
 #include <zephyr/net/net_if.h>
 #include <zephyr/net/wifi_mgmt.h>
 #include <zephyr/net/net_event.h>
+#include <zephyr/net/net_if.h>
+#include <zephyr/net/ethernet.h>
+#include <zephyr/net/ethernet_mgmt.h>
 #include <errno.h>
 #include "http_get.h"
 
@@ -158,6 +161,65 @@ void wifi_disconnect(void)
     }
 }
 
+void wifi_interface_setup()
+{
+    /*
+     * New nRF7002's come with the OTP memory blank. i.e. no programmed MAC Address.
+     * It will report:
+     * <inf> wifi_nrf: wifi_nrf_fmac_otp_mac_addr_get:  Invalid OTP MAC addr: 000000000000
+     * <err> wifi_nrf: wifi_nrf_if_start_zep: Invalid MAC address: 00:00:00:00:00:00
+     * and the wlan0 interface will not be up.
+     * 
+     * We set the MAC address and bring the interface up
+     */
+
+    int ret;
+    struct net_if *iface = net_if_get_default();
+    struct net_linkaddr *linkaddr = net_if_get_link_addr(iface);
+    struct ethernet_req_params params = {0};
+    bool mac_non_zero = false;
+
+    printk("Hostname: %s\r\n", net_hostname_get());
+
+    if (linkaddr->type == NET_LINK_ETHERNET)
+    {
+        printk("Ethernet MAC Address = ");
+        for (int i = 0; i < linkaddr->len; i++) {
+            printk("%02X",linkaddr->addr[i]);
+            if (i < (linkaddr->len -1)) printk(":");
+            if (linkaddr->addr[i] != 0x00) mac_non_zero = true;
+        }
+        printk("\r\n");
+    }
+
+    if (net_if_is_up(iface)) {
+        printk("Network Interface %s is up.\r\n", iface->if_dev->dev->name);
+    } else {
+        printk("Network Interface %s is down.\r\n", iface->if_dev->dev->name);
+    }
+
+    if (!mac_non_zero) {
+        printk("Setting MAC Address\r\n");
+
+        int8_t mac_id_string[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x01};
+        memcpy(params.mac_address.addr, mac_id_string, 6);
+
+        ret = net_mgmt(NET_REQUEST_ETHERNET_SET_MAC_ADDRESS, iface, &params, sizeof(struct ethernet_req_params));
+        if (ret != 0)
+        {
+            printk("Eth Set MAC Address Request Failed (%d)\n",ret);
+        }
+
+        if (net_if_up(iface) == 0) {
+            printk("Network Interface %s is up.\r\n", iface->if_dev->dev->name);
+        } else {
+            printk("Unable to bring up %s interface\n", iface->if_dev->dev->name);
+        }
+
+        k_sleep(K_SECONDS(1));
+    }
+}
+
 void main(void)
 {
     int sock;
@@ -176,6 +238,7 @@ void main(void)
     printk("Sleeping for 1 second while wlan0 comes up\n");
     k_sleep(K_SECONDS(1));
 
+    wifi_interface_setup();
     wifi_connect();
     k_sem_take(&wifi_connected, K_FOREVER);
     wifi_status();
