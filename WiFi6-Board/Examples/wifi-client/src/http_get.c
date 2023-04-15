@@ -25,7 +25,7 @@ void nslookup(const char * hostname, struct zsock_addrinfo **results)
 
 	err = zsock_getaddrinfo(hostname, NULL, &hints, (struct zsock_addrinfo **) results);
 	if (err) {
-		printf("getaddrinfo() failed, err %d\n", errno);
+		printk("getaddrinfo() failed, err %d\n", errno);
 		return;
 	}
 }
@@ -43,13 +43,13 @@ void print_addrinfo_results(struct zsock_addrinfo **results)
 			// IPv4 Address
 			sa = (struct sockaddr_in *) rp->ai_addr;
 			zsock_inet_ntop(AF_INET, &sa->sin_addr, ipv4, INET_ADDRSTRLEN);
-			printf("IPv4: %s\n", ipv4);
+			printk("IPv4: %s\n", ipv4);
 		}
 		if (rp->ai_addr->sa_family == AF_INET6) {
 			// IPv6 Address
 			sa6 = (struct sockaddr_in6 *) rp->ai_addr;
 			zsock_inet_ntop(AF_INET6, &sa6->sin6_addr, ipv6, INET6_ADDRSTRLEN);
-			printf("IPv6: %s\n", ipv6);
+			printk("IPv6: %s\n", ipv6);
 		}
 	}
 }
