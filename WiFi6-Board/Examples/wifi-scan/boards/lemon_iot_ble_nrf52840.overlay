@@ -1,0 +1,55 @@
+/*
+ * Overlay for Lemon-IoT-BLE-nRF52840 + nRF7002 WiFi 6 Companion IC
+ * Copyright (c) 2023 Aaron Mohtar & Co Pty Ltd
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	nrf_radio_coex: nrf7002-coex {
+		status = "okay";
+		compatible = "nordic,nrf700x-coex";
+		req-gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
+		status0-gpios = <&gpio0 30 GPIO_ACTIVE_HIGH>;
+		grant-gpios = <&gpio0 27 (GPIO_PULL_DOWN | GPIO_ACTIVE_LOW)>;
+		swctrl1-gpios = <&gpio0 31 GPIO_ACTIVE_HIGH>;
+		//btrf-switch-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&spi1 {
+	status = "okay";
+	pinctrl-0 = <&spi1_default>;
+	pinctrl-1 = <&spi1_sleep>;
+	cs-gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
+	pinctrl-names = "default", "sleep";
+	nrf7002: nrf7002@0 {
+		status = "okay";
+		compatible = "nordic,nrf7002-spi";
+		reg = <0>;
+		spi-max-frequency = <DT_FREQ_M(8)>;
+		/* Wi-Fi Pins used */
+		iovdd-ctrl-gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
+		bucken-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+		host-irq-gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&pinctrl {
+	spi1_default: spi1_default {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
+					<NRF_PSEL(SPIM_MOSI, 0, 21)>,
+					<NRF_PSEL(SPIM_MISO, 0, 22)>;
+		};
+	};
+
+	spi1_sleep: spi1_sleep {
+		group1 {
+			psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
+					<NRF_PSEL(SPIM_MOSI, 0, 21)>,
+					<NRF_PSEL(SPIM_MISO, 0, 22)>;
+			low-power-enable;
+		};
+	};
+};
