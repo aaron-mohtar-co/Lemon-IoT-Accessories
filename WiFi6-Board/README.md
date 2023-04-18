@@ -4,7 +4,7 @@ WiFi is ubiquitous. Add WiFi-6 to your project while minimising power consumptio
 
 Based on the [nRF7002 companion IC](https://www.nordicsemi.com/Products/nRF7002) from Nordic Semiconductor.  
 
-<P ALIGN="CENTER"><IMG SRC="https://lemon-iot.com/wp-content/uploads/2023/04/Lemon-IoT-nRF7002-diagram.jpeg" width=50% height=50%></P>
+<P ALIGN="CENTER"><IMG SRC="https://lemon-iot.com/wp-content/uploads/2023/04/Lemon-IoT-nRF7002-diagram-LQ.jpg" width=50% height=50%></P>
 
 ## Compatibility
 
