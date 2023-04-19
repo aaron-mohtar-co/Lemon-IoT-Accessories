@@ -28,7 +28,7 @@
  * Four ranges exist:
  *  x2-xx-xx-xx-xx-xx, x6-xx-xx-xx-xx-xx, xA-xx-xx-xx-xx-xx, xE-xx-xx-xx-xx-xx
  */
-#define MAC_ADDRESS 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
+#define MAC_ADDRESS 0x02, 0x00, 0x00, 0x00, 0x00, 0x01
 
 static K_SEM_DEFINE(wifi_connected, 0, 1);
 static K_SEM_DEFINE(ipv4_address_obtained, 0, 1);
