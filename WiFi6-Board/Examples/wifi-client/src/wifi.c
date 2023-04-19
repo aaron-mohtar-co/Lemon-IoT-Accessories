@@ -16,8 +16,19 @@
 #include <errno.h>
 #include "http_get.h"
 
+/*
+ * Set your access point name and paraphase below:
+ */
+
 #define SSID "test_ap"
 #define PSK "secretsquirrel"
+
+/*
+ * Assign locally administered MAC address if not set in OTP
+ * Four ranges exist:
+ *  x2-xx-xx-xx-xx-xx, x6-xx-xx-xx-xx-xx, xA-xx-xx-xx-xx-xx, xE-xx-xx-xx-xx-xx
+ */
+#define MAC_ADDRESS 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
 
 static K_SEM_DEFINE(wifi_connected, 0, 1);
 static K_SEM_DEFINE(ipv4_address_obtained, 0, 1);
@@ -201,7 +212,7 @@ void wifi_interface_setup()
     if (!mac_non_zero) {
         printk("Setting MAC Address\r\n");
 
-        int8_t mac_id_string[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x01};
+        int8_t mac_id_string[6] = {MAC_ADDRESS};
         memcpy(params.mac_address.addr, mac_id_string, 6);
 
         ret = net_mgmt(NET_REQUEST_ETHERNET_SET_MAC_ADDRESS, iface, &params, sizeof(struct ethernet_req_params));
